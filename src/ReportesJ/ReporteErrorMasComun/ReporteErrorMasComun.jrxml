@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteUtilizacionDeMaquinaria" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="81670578-d991-4177-9369-c24a878b2190">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#4C563C">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#DDE6CF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#4F6030">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#DDE6CF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F6F8F3"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#4C563C">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#DDE6CF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F6F8F3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="titleID" class="java.lang.String"/>
+	<parameter name="titleadministradorNombre" class="java.lang.String"/>
+	<parameter name="dateInicio" class="java.util.Date"/>
+	<parameter name="titleHoraActual" class="java.lang.String"/>
+	<parameter name="dateFin" class="java.util.Date"/>
+	<parameter name="titleDateInicio" class="java.lang.String"/>
+	<parameter name="titleDateFin" class="java.lang.String"/>
+	<parameter name="titleFechaActual" class="java.lang.String"/>
+	<parameter name="dateHoraActual" class="java.lang.Date"/>
+	<parameter name="produccion" class="java.lang.Integer"/>
+	<parameter name="consultaInicio" class="java.lang.String"/>
+	<parameter name="consultaFin" class="java.lang.String"/>
+	<parameter name="mapCollection" class="net.sf.jasperreports.engine.data.JRMapCollectionDataSource"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\franciscojavier\\Documents\\NetBeansProjects\\SistemaPDF4\\src\\ReportesJ\\ReporteDisponibilidadMaquinaria\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="AccidenteMComunRep" class="java.lang.String"/>
+	<parameter name="nombreAccident" class="java.lang.String"/>
+	<parameter name="solucionAccidente" class="java.lang.String"/>
+	<parameter name="fallaeMComunRep" class="java.lang.String"/>
+	<parameter name="nombrefalla" class="java.lang.String"/>
+	<parameter name="solucionfalla" class="java.lang.String"/>
+	<parameter name="otroMComunRep" class="java.lang.String"/>
+	<parameter name="nombreOtro" class="java.lang.String"/>
+	<parameter name="solucionOtro" class="java.lang.String"/>
+	<parameter name="duracionPromAccident" class="java.lang.String"/>
+	<parameter name="tiempoEspPromAccident" class="java.lang.String"/>
+	<parameter name="horaPromAccident" class="java.lang.String"/>
+	<parameter name="duracionPromFalla" class="java.lang.String"/>
+	<parameter name="tiempoEspPromFalla" class="java.lang.String"/>
+	<parameter name="horaPromFalla" class="java.lang.String"/>
+	<parameter name="duracionPromOtro" class="java.lang.String"/>
+	<parameter name="tiempoEspPromOtro" class="java.lang.String"/>
+	<parameter name="horaPromOtro" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     funcionregistro.`id` AS funcionregistro_id,
+     funcionregistro.`idfuncion` AS funcionregistro_idfuncion,
+     funcionregistro.`fecha` AS funcionregistro_fecha
+FROM
+     `funcionregistro` funcionregistro limit 1]]>
+	</queryString>
+	<field name="funcionregistro_id" class="java.lang.Integer"/>
+	<field name="funcionregistro_idfuncion" class="java.lang.Integer"/>
+	<field name="funcionregistro_fecha" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="331" splitType="Stretch">
+			<rectangle>
+				<reportElement x="176" y="276" width="205" height="40" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="1768c6ac-021d-4e04-9e4a-f96eeea19274"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="298" y="20" width="257" height="64" uuid="ede97ed6-280c-4fe9-830d-bc8b44074699"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="240" width="555" height="35" uuid="198c46bf-1e8d-4498-a577-68a13acb5ad9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="240" width="54" height="35" forecolor="#6E7B35" backcolor="#6E7B35" uuid="bd09283f-7670-4883-8235-e663818f0d20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="54" y="240" width="122" height="35" forecolor="#6E7B35" backcolor="#6E7B35" uuid="b81de4cc-126f-4289-ade1-8cf45a770b63"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="176" y="240" width="205" height="35" forecolor="#6E7B35" backcolor="#6E7B35" uuid="9323c18b-858c-4d9e-903e-1b977788aea8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="381" y="240" width="174" height="35" forecolor="#6E7B35" backcolor="#6E7B35" uuid="f08e2f5f-d253-40da-8d9b-daa671c1196a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="240" width="54" height="35" forecolor="#FFFFFF" backcolor="#000000" uuid="357123f3-515f-498d-bfdf-c8da8cf97aa2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="241" width="202" height="35" forecolor="#FFFFFF" backcolor="#000000" uuid="f25944b2-4353-4d5b-81ba-e69561eb3994"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Intervalo del reporte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="241" width="171" height="35" forecolor="#FFFFFF" backcolor="#000000" uuid="2251e5ff-89bb-49e4-ad91-48713ffc1f85"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Creacion del Reporte]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="275" width="54" height="41" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="bc784c5f-dbdc-4889-a69c-df348aada371"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="54" y="275" width="122" height="41" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="7f78351b-06fb-4512-a82f-1134a89f6303"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="381" y="275" width="87" height="19" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="1637be9b-476e-4a93-b575-b4d06974afac"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="468" y="275" width="87" height="19" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="f2830ff2-3e91-4e39-a90d-838024751d91"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="300" y="20" width="254" height="64" uuid="5773fcde-db6e-47fe-a589-e65756f41ae9"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sistema automatizado con aprovechamiento de energía renovable para la producción de sustitutos sustentables y ecológicos de materias primas a base de vidrio reciclado.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="301" y="95" width="251" height="67" uuid="30958c1b-3074-4f42-a6a3-8baaddf26e9c"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Dirección: Carretera Caborca a Desemboque
+Km: 4.5 Industrial, Heroica Caborca.
+Heroica Caborca, 83640
+Teléfono: Oficina: (637) 372 7620
+E-mail: inteppco@gmail.com
+]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="381" y="294" width="174" height="22" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="206c756c-7c5e-4fc2-b3a3-5860f1273c7d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="176" y="275" width="102" height="19" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="ef8d6bec-c6c2-4031-84d7-dfd20deea61c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="278" y="275" width="103" height="19" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="cf16b784-3f9a-4aed-a9d7-96a95175af2c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="278" y="293" width="102" height="23" uuid="1b2620bd-e8b5-42e3-86ca-ec3083df724b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hasta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="294" width="87" height="23" uuid="8c5c4ab9-d441-475d-95c7-a99548171946"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="295" width="89" height="22" uuid="2b099e37-ff4d-4f54-875e-6f5989114d34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="241" width="125" height="35" forecolor="#FFFFFF" backcolor="#000000" uuid="a87a4152-a465-48cc-abda-65c46c38d1a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Administrador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="294" width="103" height="22" uuid="6e90604e-4cfa-43de-9336-9317d787463c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Desde]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="162" width="555" height="48" forecolor="#C5C5C5" backcolor="#C5C5C5" uuid="ef002c51-c24c-437f-8ff5-601c13c4cd1a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="189" width="463" height="11" forecolor="#6E7B35" backcolor="#6E7B35" uuid="e93fa6e3-4aeb-420a-9348-12e82b54a568"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="158" width="555" height="31" backcolor="#FFFFFF" uuid="24776caf-fa18-41c4-8417-432321992feb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reporte Error/Falla Mas Comun]]></text>
+			</staticText>
+			<image>
+				<reportElement x="8" y="19" width="279" height="109" uuid="09935550-c9f1-488c-8936-a902d5ccbebe"/>
+				<imageExpression><![CDATA["C:\\Users\\franciscojavier\\Documents\\NetBeansProjects\\SistemaPDF4\\src\\imagenes\\inteppcoimg.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="276" width="54" height="40" uuid="1976a7d1-0679-4acd-a273-b8d82e135c25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="274" width="122" height="42" uuid="ee56751a-ff7d-4fdc-a6b0-53e24b81a5da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleadministradorNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="276" width="101" height="17" uuid="db745567-1c30-4502-83f5-954bee23fd24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleDateInicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="276" width="100" height="20" uuid="d200c5d6-8b16-417f-b991-d01c804689b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleDateFin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="274" width="83" height="19" uuid="d4b0e960-d401-4487-8c5c-2d4b81fadec0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleFechaActual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="276" width="81" height="19" uuid="3b90ca4b-bafa-480c-ad34-7728974f7f20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleHoraActual}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="0" width="176" height="19" forecolor="#6E7B35" backcolor="#6E7B35" uuid="9c0488f5-6089-4f3a-9def-d7d375fcd736"/>
+			</rectangle>
+		</band>
+	</title>
+	<detail>
+		<band height="136" splitType="Stretch">
+			<rectangle>
+				<reportElement x="40" y="0" width="514" height="20" forecolor="#6E7B35" backcolor="#6E7B35" uuid="80dffb3b-802a-43d6-883b-824bb0abf607"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="20" width="118" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="e3d023df-71b8-45a5-b238-d0cdaf6b9fe2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="40" width="118" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="ba023b66-445c-4610-b49b-646f71fc2f41"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="60" width="118" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="8c19c913-b01c-485f-a145-0710a5c5ad1a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="80" width="118" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="ac8e2731-c8eb-4505-8575-18293bd0b4af"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="100" width="118" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="fe9d380f-8218-4a3c-848e-2f0cd8abd88c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="100" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="7af97eb5-95b8-41c4-8983-d202c00aecbb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="80" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="9619d486-0263-494e-965e-cf9da077a08c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="40" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="18bf58ba-1b1f-48b4-a0ad-d7861fa4ce81"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="60" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="7c70a9d8-df08-40ad-b34e-152460eb5d90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="25" height="120" forecolor="#6E7B35" backcolor="#6E7B35" uuid="a4f96c91-b3ac-4646-8df3-e78027ac9a98"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="40" y="100" width="398" height="20" uuid="b8b9e28d-6f0b-4afe-a986-47cb973c1dbc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Hora promedio ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="80" width="398" height="20" uuid="cdd1e36b-51a6-4e22-8279-345597e2f558"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Número de veces que se presentó]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="40" width="398" height="20" uuid="33875da2-4281-4d2f-afb2-21b81059cac5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Duracion Promedio(min)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="25" height="120" forecolor="#FFFFFF" backcolor="#000000" uuid="63a7bdd7-8d2a-4a05-91a9-1b44b759b426"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Falla]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="40" y="20" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="d0ea2ab4-0e75-42fe-a49d-ac2b3bedf2fe"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="40" y="60" width="398" height="20" uuid="6bad5fff-6270-4140-946e-8268f8a4b5a4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tiempo de espera promedio para reparación (min) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="20" width="398" height="20" uuid="3fa88ef2-313d-43db-8830-c68422fa9955"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Solución]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="439" y="80" width="116" height="20" uuid="12a1b161-680a-4dd2-ba9a-aa2429cb045a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{fallaeMComunRep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="1" width="512" height="20" forecolor="#FFFFFF" uuid="6158b898-6b1a-417a-8f5d-e85fda7b1548"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombrefalla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="21" width="114" height="19" uuid="f208d54c-b4f2-4b68-85d7-ab625dabe85d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{solucionfalla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="40" width="116" height="20" uuid="9b632155-7717-4655-8b61-fe19a1935c2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{duracionPromFalla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="60" width="115" height="20" uuid="3378864b-4af0-4938-babd-0492624ebbf0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{tiempoEspPromFalla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="100" width="114" height="20" uuid="0a40a4a0-4e3f-4b9c-b026-4719f8d97d5d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{horaPromFalla}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="141">
+			<rectangle>
+				<reportElement x="0" y="0" width="26" height="120" forecolor="#6E7B35" backcolor="#6E7B35" uuid="db274d2c-06a5-4fcd-a741-57ec9dc8fdba"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="20" width="119" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="c280a6ef-1013-4b3e-94c8-0754635bcb17"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="20" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="bf6d7616-f686-465d-82ae-56922b7fa5bf"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="40" y="20" width="399" height="20" uuid="06de673a-a6c5-4d44-8e0b-90e4e5e5155f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Solución]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="40" y="0" width="515" height="20" forecolor="#6E7B35" backcolor="#6E7B35" uuid="0fbfc8f6-e88a-4493-b3aa-cf5ae1f00f26"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="26" height="120" forecolor="#FFFFFF" backcolor="#000000" uuid="5ef9ba47-0dc8-493f-9cbd-4310be8f2671"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Accidente]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="40" y="40" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="7f698402-b36b-4e3f-9eef-a911c834dfae"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="60" width="399" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="da9a64c3-3574-405f-abaf-d889e248e8c8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="100" width="399" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="bec952ce-5510-4bff-9f21-63e49de1bfe3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="80" width="399" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="bdfac336-7c9a-47af-9175-f50be53ce6cd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="40" y="40" width="399" height="20" uuid="812de40d-ae4b-46a0-986f-85998955c192"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Duracion Promedio(min)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="60" width="396" height="20" uuid="e1d62c20-eb19-45cc-8082-8555ce664885"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tiempo de espera promedio para reparación (min) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="100" width="398" height="20" uuid="8002ad6c-dede-497e-a310-eabb01cc717b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Hora promedio ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="80" width="398" height="20" uuid="9b462dac-d16f-4484-b139-122837b5a9d9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Número de veces que se presentó]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="438" y="40" width="117" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="f81938eb-dfee-40e5-b685-65b922f407b7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="438" y="60" width="117" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="143fc91a-be20-4271-8c48-df16b6a4ddec"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="438" y="100" width="117" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="2ccde2a1-78e9-4b07-ba75-fe805a9ec694"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="438" y="80" width="117" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="be936721-55a7-4c16-b676-2a4eaa257603"/>
+			</rectangle>
+			<textField>
+				<reportElement x="439" y="80" width="116" height="20" uuid="ddcd2327-2cae-4232-b5f2-fc6bcf5cc944"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{AccidenteMComunRep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="40" y="0" width="515" height="20" forecolor="#FFFFFF" uuid="46ed2806-c8a6-4eae-a106-e5b76e21f9f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreAccident}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="20" width="116" height="20" uuid="f608c070-9988-40d0-82a7-53db2f8e0305"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{solucionAccidente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="40" width="117" height="20" uuid="1eab5300-94c4-4774-a524-2e5b78e9742c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{duracionPromAccident}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="60" width="117" height="20" uuid="73a532a3-cf63-42df-a342-5453f5e33a52"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{tiempoEspPromAccident}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="100" width="115" height="20" uuid="15ff82bf-6895-4dba-bab1-5f94852768da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{horaPromAccident}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="130">
+			<rectangle>
+				<reportElement x="41" y="80" width="396" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="843a49da-1442-491c-9ff1-7d88920b685f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="41" y="20" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="e2192615-a9cb-4f79-aa4d-90b755dedc85"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="41" y="0" width="514" height="20" forecolor="#6E7B35" backcolor="#6E7B35" uuid="9d851247-c9df-4187-a222-0b8f7c5391f6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="0" width="25" height="120" forecolor="#6E7B35" backcolor="#6E7B35" uuid="3a1e4a5a-0485-40f9-8764-f225ddb89d5b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="60" width="119" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="5e3eeb21-0bbb-4ca4-887d-afc469eafa1f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="41" y="40" width="398" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="c79a1057-530c-481e-9015-ba0919b225b4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="100" width="119" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="204e2d68-3ab3-460b-9f7b-6105a304efa4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="41" y="80" width="396" height="20" uuid="01e95b36-c0f4-467c-a9af-c1a80bb144df"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Número de veces que se presentó]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="41" y="100" width="396" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="0e2d14ca-fb27-4a5f-a188-fead53cf49a5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="437" y="20" width="118" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="47bf6bcc-7591-4539-93a5-b4dc5859b7a5"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="1" y="0" width="25" height="120" forecolor="#FFFFFF" backcolor="#000000" uuid="430b95d0-5795-4b36-ba4e-94291c7f1711"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Otro]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="437" y="80" width="118" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="71f3612e-946f-41e4-ad5e-3cd4739a0e6a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="41" y="60" width="396" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="f6987824-219f-4b02-9e33-e0c3f7dd5373"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="41" y="40" width="398" height="20" uuid="5cb9d3be-b74f-46e8-983d-b46166c5f6ea"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Duracion Promedio(min)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="60" width="394" height="20" uuid="68b9c231-4434-4cf6-bd2a-985db3d39bf0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tiempo de espera promedio para reparación (min) ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="437" y="40" width="118" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="277e74c7-daf7-43ae-a911-f9054b9d8356"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="41" y="20" width="398" height="20" uuid="d1310787-69f6-4ab4-b21e-2959224987b9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Solución]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="100" width="395" height="20" uuid="63c6187a-953f-40df-927f-42a8ff781807"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Hora promedio ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="438" y="80" width="116" height="20" uuid="31ff0823-35a0-4c09-8a81-41aa622f7b4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{otroMComunRep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="514" height="20" forecolor="#FFFFFF" uuid="b5542797-a9dc-4895-afa1-790bd504b95e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreOtro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="20" width="117" height="20" uuid="21ce2e82-40d7-4b8f-b08c-5eadf89fcffa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{solucionOtro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="40" width="119" height="20" uuid="239f7c9a-3105-42bb-bb2d-317419592509"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{duracionPromOtro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="60" width="116" height="20" uuid="5a859f88-3c61-4595-82df-24c9d5df765c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{tiempoEspPromOtro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="100" width="116" height="20" uuid="5c262cd0-1cb2-4bc2-868c-4a6da46f7c0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{horaPromOtro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="644" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="487" width="555" height="20" forecolor="#6E7B35" backcolor="#6E7B35" uuid="f3432dc4-a966-4e98-b274-53fb9877ee6f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="527" width="277" height="78" forecolor="#6E7B35" backcolor="#D6E3BA" uuid="95663d73-fac2-4603-bd75-3a2ffe81c7a4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="277" y="527" width="278" height="78" forecolor="#6E7B35" backcolor="#D6E3BA" uuid="88cd318b-9296-4ddd-95ac-cc28349ac9ec"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="326" width="555" height="20" forecolor="#6E7B35" backcolor="#6E7B35" uuid="aa2a8841-c42c-4b66-822e-cc2cab63dc50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="17" width="555" height="31" forecolor="#FFFFFF" backcolor="#6E7B35" uuid="341c828d-5f44-4ecd-93a8-4616443071ab"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="17" width="554" height="31" forecolor="#FFFFFF" backcolor="#000000" uuid="f56f8415-0f26-4296-9965-90a2f7ad4530"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gráfico De Fallas-Accidentes-Otros]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="346" width="555" height="130" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="b55436a4-0d57-4a85-b0f1-438e7f861f75"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="326" width="552" height="20" forecolor="#FFFFFF" backcolor="#000000" uuid="68dc5e4f-5f53-4101-b0a1-da85e026117e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="567" width="275" height="38" uuid="37a22ae3-faa4-474e-b5ad-7e0fdc4205cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Carlos Contreras]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="507" width="555" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="cd671296-301d-4c38-8e53-a1847d6b033d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="487" width="552" height="20" forecolor="#FFFFFF" backcolor="#000000" uuid="f7d00467-e711-4d12-b6ed-4f232993eccf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aprobación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="507" width="275" height="20" uuid="f37803b6-91cb-4575-aea2-cc294d506fc0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gerencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="567" width="274" height="38" uuid="25d62b03-dddd-4997-a2ab-9dab3ffa5727"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Antonia Villagrán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="507" width="277" height="20" uuid="77a0eda8-8e40-4677-9140-c7afdcfef130"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Jefe Unidad - Usuario]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="48" width="553" height="258" uuid="494fabf7-558a-48e6-80fb-da34c71ed3ab"/>
+				<dataSourceExpression><![CDATA[$P{mapCollection}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DisponibilidadGrafico.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

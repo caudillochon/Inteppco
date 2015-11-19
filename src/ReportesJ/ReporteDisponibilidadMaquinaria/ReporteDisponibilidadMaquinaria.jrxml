@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteUtilizacionDeMaquinaria" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="81670578-d991-4177-9369-c24a878b2190">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#4C563C">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#DDE6CF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#4C563C">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#DDE6CF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F6F8F3"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="ResumenDelPeriedoTabla" uuid="46152979-ff60-4fa3-b29f-7be3f9914a1f">
+		<parameter name="consultaInicio" class="java.lang.String"/>
+		<parameter name="consultaFin" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT Date(inicio) as fecha
+,SUM(TIMESTAMPDIFF(MINUTE,inicio,fin)) as 'Tiempo De Falla(min)'
+,SUM(ROUND(TIME_TO_SEC(TiempoRep)/60)) as 'Tiempo De Reparacion(min)'
+
+FROM fallasocurridas
+
+WHERE inicio between $P{consultaInicio} and $P{consultaFin}
+
+GROUP BY fecha]]>
+		</queryString>
+		<field name="fecha" class="java.sql.Date">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Tiempo De Falla(min)" class="java.math.BigDecimal"/>
+		<field name="Tiempo De Reparacion(min)" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="SubData" uuid="0f2ddc15-3435-4d75-b0c7-dae2b03a4848">
+		<field name="name" class="java.lang.String"/>
+		<field name="edad" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="titleID" class="java.lang.String"/>
+	<parameter name="titleadministradorNombre" class="java.lang.String"/>
+	<parameter name="dateInicio" class="java.util.Date"/>
+	<parameter name="titleHoraActual" class="java.lang.String"/>
+	<parameter name="dateFin" class="java.util.Date"/>
+	<parameter name="titleDateInicio" class="java.lang.String"/>
+	<parameter name="titleDateFin" class="java.lang.String"/>
+	<parameter name="titleFechaActual" class="java.lang.String"/>
+	<parameter name="dateHoraActual" class="java.lang.Date"/>
+	<parameter name="produccion" class="java.lang.Integer"/>
+	<parameter name="consultaInicio" class="java.lang.String"/>
+	<parameter name="consultaFin" class="java.lang.String"/>
+	<parameter name="temPromFalla" class="java.lang.String"/>
+	<parameter name="temPromRep" class="java.lang.String"/>
+	<parameter name="DisponibilidadMaqui" class="java.lang.String"/>
+	<parameter name="mapCollection" class="net.sf.jasperreports.engine.data.JRMapCollectionDataSource"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\franciscojavier\\Documents\\NetBeansProjects\\SistemaPDF4\\src\\ReportesJ\\ReporteDisponibilidadMaquinaria\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     funcionregistro.`id` AS funcionregistro_id,
+     funcionregistro.`idfuncion` AS funcionregistro_idfuncion,
+     funcionregistro.`fecha` AS funcionregistro_fecha
+FROM
+     `funcionregistro` funcionregistro limit 1]]>
+	</queryString>
+	<field name="funcionregistro_id" class="java.lang.Integer"/>
+	<field name="funcionregistro_idfuncion" class="java.lang.Integer"/>
+	<field name="funcionregistro_fecha" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="336" splitType="Stretch">
+			<rectangle>
+				<reportElement x="176" y="276" width="205" height="40" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="1768c6ac-021d-4e04-9e4a-f96eeea19274"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="298" y="20" width="257" height="64" uuid="ede97ed6-280c-4fe9-830d-bc8b44074699"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="240" width="555" height="35" uuid="198c46bf-1e8d-4498-a577-68a13acb5ad9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="240" width="54" height="35" forecolor="#6E7B35" backcolor="#6E7B35" uuid="bd09283f-7670-4883-8235-e663818f0d20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="54" y="240" width="122" height="35" forecolor="#6E7B35" backcolor="#6E7B35" uuid="b81de4cc-126f-4289-ade1-8cf45a770b63"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="176" y="240" width="205" height="35" forecolor="#6E7B35" backcolor="#6E7B35" uuid="9323c18b-858c-4d9e-903e-1b977788aea8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="381" y="240" width="174" height="35" forecolor="#6E7B35" backcolor="#6E7B35" uuid="f08e2f5f-d253-40da-8d9b-daa671c1196a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="240" width="54" height="35" forecolor="#FFFFFF" backcolor="#000000" uuid="357123f3-515f-498d-bfdf-c8da8cf97aa2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="241" width="202" height="35" forecolor="#FFFFFF" backcolor="#000000" uuid="f25944b2-4353-4d5b-81ba-e69561eb3994"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Intervalo de tiempo seleccionado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="241" width="171" height="35" forecolor="#FFFFFF" backcolor="#000000" uuid="2251e5ff-89bb-49e4-ad91-48713ffc1f85"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Creacion del Reporte]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="275" width="54" height="41" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="bc784c5f-dbdc-4889-a69c-df348aada371"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="54" y="275" width="122" height="41" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="7f78351b-06fb-4512-a82f-1134a89f6303"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="381" y="275" width="87" height="19" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="1637be9b-476e-4a93-b575-b4d06974afac"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="468" y="275" width="87" height="19" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="f2830ff2-3e91-4e39-a90d-838024751d91"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="176" height="20" forecolor="#FFFFFF" backcolor="#6E7B35" uuid="6b731e8f-ddb6-4d81-9a83-90558f37c5a0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="300" y="20" width="254" height="64" uuid="5773fcde-db6e-47fe-a589-e65756f41ae9"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sistema automatizado con aprovechamiento de energía renovable para la producción de sustitutos sustentables y ecológicos de materias primas a base de vidrio reciclado.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="301" y="95" width="251" height="67" uuid="30958c1b-3074-4f42-a6a3-8baaddf26e9c"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Dirección: Carretera Caborca a Desemboque
+Km: 4.5 Industrial, Heroica Caborca.
+Heroica Caborca, 83640
+Teléfono: Oficina: (637) 372 7620
+E-mail: inteppco@gmail.com
+]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="381" y="294" width="174" height="22" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="206c756c-7c5e-4fc2-b3a3-5860f1273c7d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="176" y="275" width="102" height="19" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="ef8d6bec-c6c2-4031-84d7-dfd20deea61c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="278" y="275" width="103" height="19" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="cf16b784-3f9a-4aed-a9d7-96a95175af2c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="278" y="293" width="102" height="23" uuid="1b2620bd-e8b5-42e3-86ca-ec3083df724b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hasta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="294" width="87" height="23" uuid="8c5c4ab9-d441-475d-95c7-a99548171946"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="295" width="89" height="22" uuid="2b099e37-ff4d-4f54-875e-6f5989114d34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="241" width="125" height="35" forecolor="#FFFFFF" backcolor="#000000" uuid="a87a4152-a465-48cc-abda-65c46c38d1a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Administrador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="294" width="103" height="22" uuid="6e90604e-4cfa-43de-9336-9317d787463c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Desde]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="162" width="555" height="48" forecolor="#C5C5C5" backcolor="#C5C5C5" uuid="ef002c51-c24c-437f-8ff5-601c13c4cd1a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="189" width="463" height="11" forecolor="#6E7B35" backcolor="#6E7B35" uuid="e93fa6e3-4aeb-420a-9348-12e82b54a568"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="158" width="555" height="31" backcolor="#FFFFFF" uuid="24776caf-fa18-41c4-8417-432321992feb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reporte de Disponibilidad de la Maquinaria]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="20" width="279" height="109" uuid="09935550-c9f1-488c-8936-a902d5ccbebe"/>
+				<imageExpression><![CDATA["C:\\Users\\franciscojavier\\Documents\\NetBeansProjects\\SistemaPDF4\\src\\imagenes\\inteppcoimg.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="276" width="54" height="40" uuid="1976a7d1-0679-4acd-a273-b8d82e135c25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="274" width="122" height="42" uuid="ee56751a-ff7d-4fdc-a6b0-53e24b81a5da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleadministradorNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="276" width="101" height="17" uuid="db745567-1c30-4502-83f5-954bee23fd24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleDateInicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="276" width="100" height="20" uuid="d200c5d6-8b16-417f-b991-d01c804689b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleDateFin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="274" width="83" height="19" uuid="d4b0e960-d401-4487-8c5c-2d4b81fadec0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleFechaActual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="276" width="81" height="19" uuid="3b90ca4b-bafa-480c-ad34-7728974f7f20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{titleHoraActual}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="104" splitType="Stretch">
+			<rectangle>
+				<reportElement x="144" y="0" width="270" height="20" forecolor="#6E7B35" backcolor="#6E7B35" uuid="f732a1b2-1443-44c3-8841-07b4bd26f6fc"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="144" y="0" width="270" height="20" forecolor="#FFFFFF" backcolor="#000000" uuid="a527b1d8-9f14-4b1f-a94f-8db3b511e92f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumen del Periodo]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="144" y="20" width="270" height="50" uuid="2e37101d-2db0-40fa-bd6a-122e79cbfb1c"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="ResumenDelPeriedoTabla" uuid="6cb9dbc4-9c19-4978-88ce-6e138cc771bd">
+						<datasetParameter name="consultaInicio">
+							<datasetParameterExpression><![CDATA[$P{consultaInicio}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="consultaFin">
+							<datasetParameterExpression><![CDATA[$P{consultaFin}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="3ebce88e-5b84-46f7-9fad-d93210cf359c">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="7e5d3d05-fa4b-4c34-af30-c8ee7948130f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Fecha]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2214cb97-8e7b-414a-afbc-bb94f3b8e82a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fecha})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f6a7653c-cd9e-4195-a698-163b0dabdb08">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e65501df-1a95-4726-9973-359a9d59c3f3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Tiempo De Falla(min)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c805afdc-bb3a-4e75-80be-b63550a26131"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{Tiempo De Falla(min)}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c59bf69e-8df5-45e0-8e58-6411038896e3">
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="c68cfb67-58f5-47b0-9424-44e379a284bb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Tiempo De Reparación(min)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="48f9943c-51ca-4b6f-83a1-1d9900ba9da6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{Tiempo De Reparacion(min)}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="110">
+			<rectangle>
+				<reportElement x="366" y="66" width="156" height="27" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="4dfb7b81-55e5-44af-9c65-5b60c010196d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="54" y="65" width="156" height="28" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="c280a6ef-1013-4b3e-94c8-0754635bcb17"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="210" y="65" width="156" height="28" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="ffa26dfe-d13b-4b4d-a150-7a2419980cc9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="210" y="20" width="156" height="46" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="ee8c282b-8083-4fd0-b3ec-c39f5f8a5821"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="366" y="20" width="156" height="46" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="1945814b-2648-4269-883f-0a1b204859ed"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="54" y="0" width="468" height="19" forecolor="#6E7B35" backcolor="#6E7B35" uuid="9c0488f5-6089-4f3a-9def-d7d375fcd736"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="54" y="0" width="177" height="19" forecolor="#FFFFFF" backcolor="#000000" uuid="edc5a3c8-94fe-4154-a1bd-24a03e9938cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="1" width="291" height="19" forecolor="#FFFFFF" backcolor="#000000" uuid="e6739a62-19d6-498d-b8c7-1114517b6889"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fallas y Ponderación]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="54" y="20" width="156" height="46" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="bf6d7616-f686-465d-82ae-56922b7fa5bf"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="54" y="19" width="156" height="46" uuid="112e237c-2ff4-494e-943d-8bbd47d771e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tiempo promedio entre cada falla (Min)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="19" width="156" height="46" uuid="06de673a-a6c5-4d44-8e0b-90e4e5e5155f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tiempo promedio entre cada reparacion (Min)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="19" width="156" height="46" uuid="747acb28-7f73-4b91-8321-b65007092f07"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[% Disponibilidad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="66" width="156" height="28" backcolor="#FFFFFF" uuid="ae133344-27e2-4a68-8739-3301b17584a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{temPromFalla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="66" width="156" height="27" backcolor="#FFFFFF" uuid="8b42de4f-2e39-40a5-94e2-3c923e302c20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{temPromRep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="66" width="154" height="27" uuid="927b44e4-f54f-4669-a3bd-743005dba888"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{DisponibilidadMaqui}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="644" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="487" width="555" height="20" forecolor="#6E7B35" backcolor="#6E7B35" uuid="f3432dc4-a966-4e98-b274-53fb9877ee6f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="527" width="277" height="78" forecolor="#6E7B35" backcolor="#D6E3BA" uuid="95663d73-fac2-4603-bd75-3a2ffe81c7a4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="277" y="527" width="278" height="78" forecolor="#6E7B35" backcolor="#D6E3BA" uuid="88cd318b-9296-4ddd-95ac-cc28349ac9ec"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="326" width="555" height="20" forecolor="#6E7B35" backcolor="#6E7B35" uuid="aa2a8841-c42c-4b66-822e-cc2cab63dc50"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="17" width="555" height="31" forecolor="#FFFFFF" backcolor="#6E7B35" uuid="341c828d-5f44-4ecd-93a8-4616443071ab"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="17" width="554" height="31" forecolor="#FFFFFF" backcolor="#000000" uuid="f56f8415-0f26-4296-9965-90a2f7ad4530"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gráfico de Disponibilidad del Sistema]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="346" width="555" height="130" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="b55436a4-0d57-4a85-b0f1-438e7f861f75"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="326" width="552" height="20" forecolor="#FFFFFF" backcolor="#000000" uuid="68dc5e4f-5f53-4101-b0a1-da85e026117e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="567" width="275" height="38" uuid="37a22ae3-faa4-474e-b5ad-7e0fdc4205cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Carlos Contreras]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="507" width="555" height="20" forecolor="#6E7B35" backcolor="#E8F0DB" uuid="cd671296-301d-4c38-8e53-a1847d6b033d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="487" width="552" height="20" forecolor="#FFFFFF" backcolor="#000000" uuid="f7d00467-e711-4d12-b6ed-4f232993eccf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aprobación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="507" width="275" height="20" uuid="f37803b6-91cb-4575-aea2-cc294d506fc0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gerencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="567" width="274" height="38" uuid="25d62b03-dddd-4997-a2ab-9dab3ffa5727"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Antonia Villagarán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="507" width="277" height="20" uuid="77a0eda8-8e40-4677-9140-c7afdcfef130"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Jefe Unidad - Usuario]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="48" width="553" height="258" uuid="494fabf7-558a-48e6-80fb-da34c71ed3ab"/>
+				<dataSourceExpression><![CDATA[$P{mapCollection}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DisponibilidadGrafico.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

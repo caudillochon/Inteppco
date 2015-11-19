@@ -1,0 +1,521 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package operador;
+
+
+import PLC.PLC_Model;
+import PLC.PLCpaint;
+import admin.control_de_operadores.Registrar_Operador;
+import inicio.de.sesion.Navegacion;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
+/**
+ *
+ * @author Luis
+ */
+public class menu_operador extends javax.swing.JFrame  implements PLCpaint{
+public Navegacion navegacion;
+
+    /**
+     * Creates new form accseso
+     */
+    public menu_operador(Navegacion navegacion) {
+        this.navegacion=navegacion;
+        initComponents();
+    setLocationRelativeTo(null); //se elije en que parte de la pantalla aparecera null (centro)
+        setResizable(false);//evitamos que la pantalla se modifique.
+        this.setTitle("Menu Operador-Inteppco");//titulo a la pantalla.
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/logo_1.png")).getImage());
+         try{
+        BufferedImage imagen =ImageIO.read(Registrar_Operador.class.getResourceAsStream("/imagenes/fondo.png"));;
+        Control_fondo.
+        BgBorder borde = new Control_fondo.BgBorder(imagen) ;            
+      primario.setBorder(borde);}
+       catch(IOException io){
+           
+       } 
+        
+    }
+
+
+@Override
+    public  void repaint(PLC_Model plcVariables){
+        if(plcVariables.botonEncendido){
+            if(plcVariables.banda1){
+                Banda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banda-ok.png")));
+            }else{
+                Banda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banda-error.png")));
+            }
+            if(plcVariables.banda2){
+                 banda2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banda-ok.png")));
+            }else{
+                banda2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banda-error.png")));
+            }
+            if(plcVariables.blower){
+
+            }
+            if(plcVariables.dosificadora){
+                dosificadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dosificadora-ok.png")));
+            }else{
+                dosificadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dosificadora-error.png")));
+            }
+            if(plcVariables.trituradora){
+                trituradora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trituradora-ok.png")));
+            }else{
+               trituradora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trituradora-error.png")));
+              }
+            if(plcVariables.pulverizadora){
+                pulverizadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pulverizadora-ok.png")));    
+            }else{
+            pulverizadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pulverizadora-error.png")));
+            }
+                
+            if(plcVariables.criva){
+             criva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dronel-ok.png")));
+            }else{
+            criva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dronel-error.png")));
+            }
+            if(plcVariables.dosificadora){
+
+            }
+            if(plcVariables.metales){
+             Metales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sensor-ok.png")));
+            }else{
+             Metales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sensor.png")));
+            }
+            jonoff.setText("Apagar");
+             onOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/red-on.png")));
+        }else{
+             jonoff.setText("Encender");
+            onOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/up_02.png")));
+            Banda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banda.png")));
+            banda2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banda.png")));
+             dosificadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dosificadora.png")));
+             trituradora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trituradora.png")));
+             pulverizadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pulverizadora.png")));
+             criva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dronel.png")));
+        }
+        sistema.repaint();
+        this.repaint();
+    }
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel4 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        primario = new javax.swing.JPanel();
+        tabbedPaneHeader1 = new org.edisoncor.gui.tabbedPane.TabbedPaneHeader();
+        Operacion1 = new org.edisoncor.gui.panel.PanelTranslucido();
+        sistema = new javax.swing.JPanel();
+        Metales = new javax.swing.JLabel();
+        dosificadora = new javax.swing.JLabel();
+        Banda1 = new javax.swing.JLabel();
+        pulverizadora = new javax.swing.JLabel();
+        banda2 = new javax.swing.JLabel();
+        criva = new javax.swing.JLabel();
+        trituradora = new javax.swing.JLabel();
+        encender = new javax.swing.JPanel();
+        panelRect9 = new org.edisoncor.gui.panel.PanelRect();
+        onOff = new javax.swing.JButton();
+        jonoff = new javax.swing.JLabel();
+        nomeclaruras = new javax.swing.JPanel();
+        panelRect10 = new org.edisoncor.gui.panel.PanelRect();
+        jLabel13 = new javax.swing.JLabel();
+        panelRect11 = new org.edisoncor.gui.panel.PanelRect();
+        panelRect12 = new org.edisoncor.gui.panel.PanelRect();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        panelRect13 = new org.edisoncor.gui.panel.PanelRect();
+        panelRect14 = new org.edisoncor.gui.panel.PanelRect();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        btn_mi_perfil = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Operación");
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-up.png"))); // NOI18N
+        jButton5.setBorder(null);
+        jButton5.setBorderPainted(false);
+        jButton5.setContentAreaFilled(false);
+        jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-press.png"))); // NOI18N
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-over.png"))); // NOI18N
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tabbedPaneHeader1.setBackground(new java.awt.Color(255, 255, 255));
+        tabbedPaneHeader1.setColorDeBorde(new java.awt.Color(255, 255, 255));
+
+        Operacion1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(219, 237, 223), new java.awt.Color(133, 178, 163)));
+        Operacion1.setColorPrimario(new java.awt.Color(219, 237, 223));
+        Operacion1.setColorSecundario(new java.awt.Color(104, 159, 141));
+
+        sistema.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        sistema.setOpaque(false);
+        sistema.setPreferredSize(new java.awt.Dimension(1160, 425));
+        sistema.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Metales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sensor.png"))); // NOI18N
+        sistema.add(Metales, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+
+        dosificadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dosificadora.png"))); // NOI18N
+        sistema.add(dosificadora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        Banda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banda.png"))); // NOI18N
+        Banda1.setToolTipText("");
+        sistema.add(Banda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+
+        pulverizadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pulverizadora.png"))); // NOI18N
+        sistema.add(pulverizadora, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
+
+        banda2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/banda.png"))); // NOI18N
+        sistema.add(banda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+
+        criva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dronel.png"))); // NOI18N
+        sistema.add(criva, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 140, -1, -1));
+
+        trituradora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/trituradora.png"))); // NOI18N
+        sistema.add(trituradora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        encender.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        encender.setOpaque(false);
+
+        panelRect9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelRect9.setAnchoDeBorde(2.0F);
+        panelRect9.setAnchoDeSegundoBorde(2.0F);
+        panelRect9.setColorDeBorde(java.awt.Color.white);
+        panelRect9.setColorDeSegundoBorde(java.awt.Color.lightGray);
+        panelRect9.setColorPrimario(new java.awt.Color(204, 204, 204));
+        panelRect9.setColorSecundario(new java.awt.Color(153, 153, 153));
+
+        onOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/up_02.png"))); // NOI18N
+        onOff.setContentAreaFilled(false);
+        onOff.setFocusPainted(false);
+        onOff.setFocusable(false);
+        onOff.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/donw_02.png"))); // NOI18N
+        onOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onOffActionPerformed(evt);
+            }
+        });
+
+        jonoff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jonoff.setText("   Encender");
+
+        javax.swing.GroupLayout panelRect9Layout = new javax.swing.GroupLayout(panelRect9);
+        panelRect9.setLayout(panelRect9Layout);
+        panelRect9Layout.setHorizontalGroup(
+            panelRect9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRect9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelRect9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jonoff, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                    .addComponent(onOff, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelRect9Layout.setVerticalGroup(
+            panelRect9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRect9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jonoff)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(onOff)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout encenderLayout = new javax.swing.GroupLayout(encender);
+        encender.setLayout(encenderLayout);
+        encenderLayout.setHorizontalGroup(
+            encenderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelRect9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        encenderLayout.setVerticalGroup(
+            encenderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelRect9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        nomeclaruras.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        nomeclaruras.setOpaque(false);
+
+        panelRect10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelRect10.setAnchoDeBorde(2.0F);
+        panelRect10.setAnchoDeSegundoBorde(2.0F);
+        panelRect10.setColorDeBorde(java.awt.Color.white);
+        panelRect10.setColorDeSegundoBorde(java.awt.Color.lightGray);
+        panelRect10.setColorPrimario(new java.awt.Color(204, 204, 204));
+        panelRect10.setColorSecundario(new java.awt.Color(153, 153, 153));
+        panelRect10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setText("Error en Componente.");
+        panelRect10.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+
+        panelRect11.setAnchoDeBorde(2.0F);
+        panelRect11.setAnchoDeSegundoBorde(1.0F);
+        panelRect11.setColorDeBorde(new java.awt.Color(102, 102, 102));
+        panelRect11.setColorPrimario(new java.awt.Color(255, 153, 153));
+        panelRect11.setColorSecundario(new java.awt.Color(255, 0, 0));
+        panelRect11.setPreferredSize(new java.awt.Dimension(35, 35));
+
+        javax.swing.GroupLayout panelRect11Layout = new javax.swing.GroupLayout(panelRect11);
+        panelRect11.setLayout(panelRect11Layout);
+        panelRect11Layout.setHorizontalGroup(
+            panelRect11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+        panelRect11Layout.setVerticalGroup(
+            panelRect11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        panelRect10.add(panelRect11, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 11, -1, -1));
+
+        panelRect12.setAnchoDeBorde(2.0F);
+        panelRect12.setAnchoDeSegundoBorde(1.0F);
+        panelRect12.setColorDeBorde(new java.awt.Color(102, 102, 102));
+        panelRect12.setColorPrimario(new java.awt.Color(255, 255, 102));
+        panelRect12.setColorSecundario(new java.awt.Color(255, 153, 0));
+        panelRect12.setPreferredSize(new java.awt.Dimension(35, 35));
+
+        javax.swing.GroupLayout panelRect12Layout = new javax.swing.GroupLayout(panelRect12);
+        panelRect12.setLayout(panelRect12Layout);
+        panelRect12Layout.setHorizontalGroup(
+            panelRect12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+        panelRect12Layout.setVerticalGroup(
+            panelRect12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        panelRect10.add(panelRect12, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 53, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setText("Atención");
+        panelRect10.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("Sistema Funcionando.");
+        panelRect10.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        panelRect13.setAnchoDeBorde(2.0F);
+        panelRect13.setAnchoDeSegundoBorde(1.0F);
+        panelRect13.setColorDeBorde(new java.awt.Color(102, 102, 102));
+        panelRect13.setColorPrimario(new java.awt.Color(102, 255, 102));
+        panelRect13.setColorSecundario(new java.awt.Color(0, 153, 0));
+        panelRect13.setPreferredSize(new java.awt.Dimension(35, 35));
+
+        javax.swing.GroupLayout panelRect13Layout = new javax.swing.GroupLayout(panelRect13);
+        panelRect13.setLayout(panelRect13Layout);
+        panelRect13Layout.setHorizontalGroup(
+            panelRect13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+        panelRect13Layout.setVerticalGroup(
+            panelRect13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        panelRect10.add(panelRect13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 53, -1, -1));
+
+        panelRect14.setAnchoDeBorde(2.0F);
+        panelRect14.setAnchoDeSegundoBorde(1.0F);
+        panelRect14.setColorDeBorde(new java.awt.Color(102, 102, 102));
+        panelRect14.setColorPrimario(new java.awt.Color(204, 204, 204));
+        panelRect14.setColorSecundario(new java.awt.Color(102, 102, 102));
+        panelRect14.setPreferredSize(new java.awt.Dimension(35, 35));
+
+        javax.swing.GroupLayout panelRect14Layout = new javax.swing.GroupLayout(panelRect14);
+        panelRect14.setLayout(panelRect14Layout);
+        panelRect14Layout.setHorizontalGroup(
+            panelRect14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+        panelRect14Layout.setVerticalGroup(
+            panelRect14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        panelRect10.add(panelRect14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setText("Sistema Apagado.");
+        panelRect10.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+
+        javax.swing.GroupLayout nomeclarurasLayout = new javax.swing.GroupLayout(nomeclaruras);
+        nomeclaruras.setLayout(nomeclarurasLayout);
+        nomeclarurasLayout.setHorizontalGroup(
+            nomeclarurasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelRect10, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+        );
+        nomeclarurasLayout.setVerticalGroup(
+            nomeclarurasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelRect10, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(105, 183, 158)));
+        jPanel5.setOpaque(false);
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel18.setText("Mi Perfil");
+        jLabel18.setFocusable(false);
+        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 50, 40));
+
+        btn_mi_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-up.png"))); // NOI18N
+        btn_mi_perfil.setBorder(null);
+        btn_mi_perfil.setBorderPainted(false);
+        btn_mi_perfil.setContentAreaFilled(false);
+        btn_mi_perfil.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-press.png"))); // NOI18N
+        btn_mi_perfil.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-over.png"))); // NOI18N
+        btn_mi_perfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mi_perfilActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btn_mi_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jButton2.setText("Cerrar Sesión");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Operacion1Layout = new javax.swing.GroupLayout(Operacion1);
+        Operacion1.setLayout(Operacion1Layout);
+        Operacion1Layout.setHorizontalGroup(
+            Operacion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Operacion1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Operacion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(Operacion1Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nomeclaruras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(205, 205, 205)
+                        .addComponent(encender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Operacion1Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        Operacion1Layout.setVerticalGroup(
+            Operacion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Operacion1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(Operacion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Operacion1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Operacion1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(Operacion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(encender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomeclaruras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabbedPaneHeader1.addTab("Operación", Operacion1);
+
+        javax.swing.GroupLayout primarioLayout = new javax.swing.GroupLayout(primario);
+        primario.setLayout(primarioLayout);
+        primarioLayout.setHorizontalGroup(
+            primarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(primarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        primarioLayout.setVerticalGroup(
+            primarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, primarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(primario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(primario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void onOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOffActionPerformed
+       
+    }//GEN-LAST:event_onOffActionPerformed
+
+    private void btn_mi_perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mi_perfilActionPerformed
+//       operador.mi_perfil.menu_perfil link = new menu_perfil(acceso);
+  //    link.setVisible(true);
+ 
+    }//GEN-LAST:event_btn_mi_perfilActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+   
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Banda1;
+    private javax.swing.JLabel Metales;
+    private org.edisoncor.gui.panel.PanelTranslucido Operacion1;
+    private javax.swing.JLabel banda2;
+    private javax.swing.JButton btn_mi_perfil;
+    private javax.swing.JLabel criva;
+    private javax.swing.JLabel dosificadora;
+    private javax.swing.JPanel encender;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel jonoff;
+    private javax.swing.JPanel nomeclaruras;
+    private javax.swing.JButton onOff;
+    private org.edisoncor.gui.panel.PanelRect panelRect10;
+    private org.edisoncor.gui.panel.PanelRect panelRect11;
+    private org.edisoncor.gui.panel.PanelRect panelRect12;
+    private org.edisoncor.gui.panel.PanelRect panelRect13;
+    private org.edisoncor.gui.panel.PanelRect panelRect14;
+    private org.edisoncor.gui.panel.PanelRect panelRect9;
+    private javax.swing.JPanel primario;
+    private javax.swing.JLabel pulverizadora;
+    private javax.swing.JPanel sistema;
+    private org.edisoncor.gui.tabbedPane.TabbedPaneHeader tabbedPaneHeader1;
+    private javax.swing.JLabel trituradora;
+    // End of variables declaration//GEN-END:variables
+}
